@@ -5,9 +5,6 @@
 ```
 ├── bin
 │   └── www
-├── config
-│   ├── database.js
-│   └── secretKey.js
 ├── controllers
 │   ├── article.js
 │   ├── history.js
@@ -33,5 +30,6 @@
 │   ├── index.js
 │   ├── note.js
 │   └── users.js
-
+├── ...
+...
 ```
