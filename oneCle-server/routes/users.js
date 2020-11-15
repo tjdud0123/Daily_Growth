@@ -1,9 +1,15 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const UserController = require('../controllers/user');
+const AuthMiddleware = require('../middlewares/auth');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+//회원가입
+router.post('/signup', UserController.signup);
+
+//로그인
+router.post('/signin', UserController.signin);
+
+// 마이 페이지 정보 조회
+router.get('/', AuthMiddleware.checkToken, UserController.readProfile);
 
 module.exports = router;
