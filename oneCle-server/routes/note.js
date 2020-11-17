@@ -7,6 +7,6 @@ const AuthMiddleware = require('../middlewares/auth');
 router.post('/:aid', AuthMiddleware.checkToken, NoteController.addNote);
 
 // 노트 내용 수정
-router.put('/:aid', AuthMiddleware.checkToken, NoteController.updateNote);
+router.put('/:nid', AuthMiddleware.checkToken, NoteController.updateNote);
 
 module.exports = router;
