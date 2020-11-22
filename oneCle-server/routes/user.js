@@ -10,6 +10,6 @@ router.post('/signup', UserController.signup);
 router.post('/signin', UserController.signin);
 
 // 마이 페이지 정보 조회
-router.get('/', AuthMiddleware.checkToken, UserController.readProfile);
+router.get('/profile', AuthMiddleware.checkToken, UserController.readProfile);
 
 module.exports = router;

@@ -9,7 +9,7 @@ const authUtil = {
   checkToken: async (req, res, next) => {
     var token = req.headers.jwt;
     if (!token) {
-      return res.json(util.fail(CODE.BAD_REQUEST, MSG.EMPTY_TOKEN));
+      return res.json(util.fail(CODE.BAD_REQUEST, MSG.TOKEN_NULL_VALUE));
     }
     const user = await jwt.verify(token);
     if (user === TOKEN_EXPIRED) {
@@ -18,7 +18,7 @@ const authUtil = {
     if (user === TOKEN_INVALID) {
       return res.json(util.fail(CODE.UNAUTHORIZED, MSG.INVALID_TOKEN));
     }
-    if (user.userId === undefined) {
+    if (user.name === undefined) {
       return res.json(util.fail(CODE.UNAUTHORIZED, MSG.INVALID_TOKEN));
     }
     req.decoded = user;

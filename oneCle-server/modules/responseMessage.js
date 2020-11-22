@@ -3,6 +3,8 @@ module.exports = {
   OUT_OF_VALUE: '파라미터 값이 잘못되었습니다',
   TOKEN_NULL_VALUE: '토큰 값이 없습니다.',
   TOKEN_NOT_VALID_VALUE: '토큰이 유효하지 않습니다.',
+  EXPIRED_TOKEN: '토큰이 만기되었습니다',
+  INVALID_TOKEN: '사용 불가능한 토큰입니다',
 
   // 회원가입
   CREATED_USER: '회원가입 성공',
