@@ -7,8 +7,8 @@ const jwt = require('../modules/jwt');
 
 module.exports = {
   signup: async (req, res) => {
-    const { userName, password, email, role } = req.body;
-    if (!userName || !password || !email || !role) {
+    const { userName, password, email, job, jobDetail } = req.body;
+    if (!userName || !password || !email || !job || !jobDetail) {
       res
         .status(CODE.BAD_REQUEST)
         .send(util.fail(CODE.BAD_REQUEST, MSG.NULL_VALUE));
@@ -24,7 +24,14 @@ module.exports = {
 
     const { salt, hashed } = await encrypt.encrypt(password);
 
-    const idx = await UserModel.signup(userName, email, hashed, salt, role);
+    const idx = await UserModel.signup(
+      userName,
+      email,
+      hashed,
+      salt,
+      job,
+      jobDetail,
+    );
 
     if (idx === -1) {
       return res
@@ -69,6 +76,7 @@ module.exports = {
     );
   },
   readProfile: async (req, res) => {
+    console.log('readProfile', req.decoded);
     const userIdx = req.decoded.userId;
 
     const dataAll = await UserModel.readProfile(userIdx);

@@ -1,11 +1,11 @@
 const pool = require('../modules/pool');
-const table = 'user';
+const table = 'User';
 
 const user = {
-  signup: async (userName, email, password, salt, role) => {
-    const fields = 'userName, email, password, salt, role';
-    const questions = `?, ?, ?, ?, ?`;
-    const values = [userName, email, password, salt, role];
+  signup: async (userName, email, password, salt, job, jobDetail) => {
+    const fields = 'userName, email, password, salt, job, jobDetail';
+    const questions = `?, ?, ?, ?, ?, ?`;
+    const values = [userName, email, password, salt, job, jobDetail];
     const query = `INSERT INTO ${table}(${fields}) VALUES(${questions})`;
     try {
       const result = await pool.queryParamArr(query, values);
@@ -22,9 +22,7 @@ const user = {
     const query = `SELECT * FROM ${table} WHERE email="${email}"`;
     try {
       const result = await pool.queryParam(query);
-      if (result.length === 0) {
-        return false;
-      } else return true;
+      return result.length !== 0;
     } catch (err) {
       console.log('checkUser ERROR : ', err);
       throw err;
@@ -49,7 +47,9 @@ const user = {
     }
   },
   readProfile: async userIdx => {
-    const query = `SELECT userName, role, intro, profileUrl FROM ${table} WHERE userId="${userIdx}"`;
+    console.log('ss', userIdx);
+    // const query = `SELECT userName, job, jobDetail, savedArticles, notesNum FROM ${table} WHERE userId="${userIdx}"`;
+    const query = `SELECT userName, job, jobDetail FROM ${table} WHERE userId="${userIdx}"`;
     try {
       return await pool.queryParam(query);
     } catch (err) {
