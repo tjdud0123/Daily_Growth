@@ -1,5 +1,23 @@
 # 🦉 oneCle 서버 폴더 🦉
 
+### 사용 패키지
+
+```
+$ yarn add promise-mysql
+```
+
+```
+$ yarn add rand-token
+```
+
+```
+$ yarn add jsonwebtoken
+```
+
+```
+$ yarn add pbkdf2
+```
+
 ### 폴더구조
 
 ```
