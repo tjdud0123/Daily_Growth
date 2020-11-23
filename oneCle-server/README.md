@@ -47,7 +47,7 @@ $ yarn add pbkdf2
 │   ├── history.js
 │   ├── index.js
 │   ├── note.js
-│   └── users.js
+│   └── user.js
 ├── ...
 ...
 ```
