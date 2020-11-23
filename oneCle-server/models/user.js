@@ -1,12 +1,14 @@
 const pool = require('../modules/pool');
-const table = 'User';
+const USER_TABLE = 'User';
+const SEND_TABLE = 'Send';
+const NOTE_TABLE = 'Note';
 
 const user = {
   signup: async (userName, email, password, salt, job, jobDetail) => {
     const fields = 'userName, email, password, salt, job, jobDetail';
     const questions = `?, ?, ?, ?, ?, ?`;
     const values = [userName, email, password, salt, job, jobDetail];
-    const query = `INSERT INTO ${table}(${fields}) VALUES(${questions})`;
+    const query = `INSERT INTO ${USER_TABLE}(${fields}) VALUES(${questions})`;
     try {
       const result = await pool.queryParamArr(query, values);
       //console.log(result)
@@ -19,7 +21,7 @@ const user = {
     }
   },
   checkUser: async email => {
-    const query = `SELECT * FROM ${table} WHERE email="${email}"`;
+    const query = `SELECT * FROM ${USER_TABLE} WHERE email="${email}"`;
     try {
       const result = await pool.queryParam(query);
       return result.length !== 0;
@@ -29,7 +31,7 @@ const user = {
     }
   },
   getUserById: async email => {
-    const query = `SELECT * FROM ${table} WHERE email="${email}"`;
+    const query = `SELECT * FROM ${USER_TABLE} WHERE email="${email}"`;
     try {
       return await pool.queryParam(query);
     } catch (err) {
@@ -38,7 +40,7 @@ const user = {
     }
   },
   getUserByIdx: async idx => {
-    const query = `SELECT * FROM ${table} WHERE userId="${idx}"`;
+    const query = `SELECT * FROM ${USER_TABLE} WHERE userId="${idx}"`;
     try {
       return await pool.queryParam(query);
     } catch (err) {
@@ -47,9 +49,25 @@ const user = {
     }
   },
   readProfile: async userIdx => {
-    console.log('ss', userIdx);
-    // const query = `SELECT userName, job, jobDetail, savedArticles, notesNum FROM ${table} WHERE userId="${userIdx}"`;
-    const query = `SELECT userName, job, jobDetail FROM ${table} WHERE userId="${userIdx}"`;
+    const query = `SELECT userName, job, jobDetail FROM ${USER_TABLE} WHERE userId="${userIdx}"`;
+    try {
+      return await pool.queryParam(query);
+    } catch (err) {
+      console.log('read profile ERROR : ', err);
+      throw err;
+    }
+  },
+  getSavedArticles: async userIdx => {
+    const query = `SELECT User_user_id, Article_article_id FROM ${SEND_TABLE} WHERE User_user_id="${userIdx}"`;
+    try {
+      return await pool.queryParam(query);
+    } catch (err) {
+      console.log('read profile ERROR : ', err);
+      throw err;
+    }
+  },
+  getMyNotes: async userIdx => {
+    const query = `SELECT User_user_id, content, createdAt FROM ${NOTE_TABLE} WHERE User_user_id="${userIdx}"`;
     try {
       return await pool.queryParam(query);
     } catch (err) {

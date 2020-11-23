@@ -6,6 +6,7 @@ const encrypt = require('../modules/crypto');
 const jwt = require('../modules/jwt');
 
 module.exports = {
+  /* 계정 [ 회원가입 ] */
   signup: async (req, res) => {
     const { userName, password, email, job, jobDetail } = req.body;
     if (!userName || !password || !email || !job || !jobDetail) {
@@ -41,6 +42,7 @@ module.exports = {
     res.status(CODE.OK).send(util.success(CODE.NO_CONTENT, MSG.CREATED_USER));
   },
 
+  /* 계정 [ 로그인 ] */
   signin: async (req, res) => {
     const { email, password } = req.body;
 
@@ -75,12 +77,20 @@ module.exports = {
       }),
     );
   },
+
+  /* 계정 [ 마이 페이지 정보 조회 ] */
   readProfile: async (req, res) => {
-    console.log('readProfile', req.decoded);
     const userIdx = req.decoded.userId;
 
-    const dataAll = await UserModel.readProfile(userIdx);
+    const profileData = await UserModel.readProfile(userIdx);
+    const savedArticles = await UserModel.getSavedArticles(userIdx);
+    const notes = await UserModel.getMyNotes(userIdx);
 
+    const dataAll = {
+      ...profileData[0],
+      savedArticles: savedArticles.length,
+      notesNum: notes.length,
+    };
     res
       .status(CODE.OK)
       .send(util.success(CODE.OK, MSG.READ_PROFILE_SUCCESS, dataAll));
