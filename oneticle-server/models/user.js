@@ -11,9 +11,7 @@ const user = {
     const query = `INSERT INTO ${USER_TABLE}(${fields}) VALUES(${questions})`;
     try {
       const result = await pool.queryParamArr(query, values);
-      //console.log(result)
       const insertId = result.insertId;
-      //console.log(insertId);
       return insertId;
     } catch (err) {
       console.log('signup ERROR : ', err);
