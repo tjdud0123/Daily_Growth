@@ -12,6 +12,8 @@ module.exports = {
     const payload = {
       userId: user.userId,
       name: user.userName,
+      job: user.job,
+      jobDetail: user.jobDetail,
     };
     const result = {
       token: jwt.sign(payload, secretKey, options),

@@ -23,7 +23,7 @@ module.exports = {
   READ_TODAY_ARTICLES: '오늘의 아티클 받아보기 성공',
   SAVE_ARTICLE: '아티클 저장 성공',
   LIKE_ARTICLE: '관심글 등록 성공',
-  DISLIKE_ARTICLE: '관심글 삭제 성공"',
+  DISLIKE_ARTICLE: '관심글 삭제 성공',
   NO_ARTICLE: '해당 아티클이 없습니다. aid를 확인해 주세요.',
 
   // 노트 관련

@@ -11,7 +11,11 @@ router.get(
 );
 
 // 아티클 저장
-router.post('/', AuthMiddleware.checkToken, ArticleController.saveArticle);
+router.post(
+  '/save/:aid',
+  AuthMiddleware.checkToken,
+  ArticleController.saveArticle,
+);
 
 // 아티클 좋아요
 router.post(
