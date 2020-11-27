@@ -11,7 +11,6 @@ module.exports = {
     const userIdx = req.decoded.userId;
     const job = req.decoded.job;
     const jobDetail = req.decoded.jobDetail;
-    console.log(userIdx, job, jobDetail, req.decoded);
 
     const fitArticles = await ArticleModel.getFitArticles(job, jobDetail);
     const savedArticles = await UserModel.getSavedArticles(userIdx);
