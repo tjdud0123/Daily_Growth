@@ -1,6 +1,6 @@
 const pool = require('../modules/pool');
 const USER_TABLE = 'User';
-const SEND_TABLE = 'Send';
+const HISTORY_TABLE = 'History';
 const NOTE_TABLE = 'Note';
 
 const user = {
@@ -56,7 +56,7 @@ const user = {
     }
   },
   getSavedArticles: async userIdx => {
-    const query = `SELECT User_user_id, Article_article_id FROM ${SEND_TABLE} WHERE User_user_id="${userIdx}"`;
+    const query = `SELECT User_user_id, Article_article_id FROM ${HISTORY_TABLE} WHERE User_user_id="${userIdx}"`;
     try {
       return await pool.queryParam(query);
     } catch (err) {
