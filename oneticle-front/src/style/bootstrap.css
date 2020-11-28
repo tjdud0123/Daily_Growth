@@ -13,13 +13,13 @@
   --gray-white: #efefef;
   --gray: #dbdbdb;
   --gray-dark: #b5b5b5;
+  --danger: #f92858;
 
   /* 원래 설정된 부분 */
   --secondary: #6c757d;
   --success: #28a745;
   --info: #17a2b8;
   --warning: #ffc107;
-  --danger: #dc3545;
   --light: #f8f9fa;
   --dark: #000000;
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -624,15 +624,15 @@ pre code {
   vertical-align: text-top !important;
 }
 .bg-primary {
-  background-color: #007bff !important;
+  background-color: var(--primary) !important;
 }
 a.bg-primary:focus,
 a.bg-primary:hover,
 button.bg-primary:focus,
 button.bg-primary:hover {
-  background-color: #0062cc !important;
+  background-color: var(--primary) !important;
 }
-.bg-secondary {
+/* .bg-secondary {
   background-color: #6c757d !important;
 }
 a.bg-secondary:focus,
@@ -667,17 +667,17 @@ a.bg-warning:hover,
 button.bg-warning:focus,
 button.bg-warning:hover {
   background-color: #d39e00 !important;
-}
+} */
 .bg-danger {
-  background-color: #dc3545 !important;
+  background-color: var(--danger) !important;
 }
 a.bg-danger:focus,
 a.bg-danger:hover,
 button.bg-danger:focus,
 button.bg-danger:hover {
-  background-color: #bd2130 !important;
+  background-color: var(--danger) !important;
 }
-.bg-light {
+/* .bg-light {
   background-color: #f8f9fa !important;
 }
 a.bg-light:focus,
@@ -685,19 +685,66 @@ a.bg-light:hover,
 button.bg-light:focus,
 button.bg-light:hover {
   background-color: #dae0e5 !important;
-}
+} */
 .bg-dark {
-  background-color: #343a40 !important;
+  background-color: var(--dark) !important;
 }
 a.bg-dark:focus,
 a.bg-dark:hover,
 button.bg-dark:focus,
 button.bg-dark:hover {
-  background-color: #1d2124 !important;
+  background-color: var(--dark) !important;
 }
 .bg-white {
-  background-color: #fff !important;
+  background-color: var(--white) !important;
 }
+a.bg-white:focus,
+a.bg-white:hover,
+button.bg-white:focus,
+button.bg-white:hover {
+  background-color: var(--white) !important;
+}
+
+.bg-gray-light {
+  background-color: var(--gray-light) !important;
+}
+a.bg-gray-light:focus,
+a.bg-gray-light:hover,
+button.bg-gray-light:focus,
+button.bg-gray-light:hover {
+  background-color: var(--gray-light) !important;
+}
+
+.bg-gray-white {
+  background-color: var(--gray-white) !important;
+}
+a.bg-gray-white:focus,
+a.bg-gray-white:hover,
+button.bg-gray-white:focus,
+button.bg-gray-white:hover {
+  background-color: var(--gray-white) !important;
+}
+
+.bg-gray {
+  background-color: var(--gray) !important;
+}
+a.bg-gray:focus,
+a.bg-gray:hover,
+button.bg-gray:focus,
+button.bg-gray:hover {
+  background-color: var(--gray) !important;
+}
+
+.bg-white {
+  background-color: var(--white) !important;
+}
+a.bg-gray-dark:focus,
+a.bg-gray-dark:hover,
+button.bg-gray-dark:focus,
+button.bg-gray-dark:hover {
+  background-color: var(--gray-dark) !important;
+}
+
 .bg-transparent {
   background-color: transparent !important;
 }
@@ -734,7 +781,7 @@ button.bg-dark:hover {
 .border-primary {
   border-color: var(--primary) !important;
 }
-.border-secondary {
+/* .border-secondary {
   border-color: #6c757d !important;
 }
 .border-success {
@@ -745,18 +792,34 @@ button.bg-dark:hover {
 }
 .border-warning {
   border-color: #ffc107 !important;
-}
+} */
 .border-danger {
-  border-color: #dc3545 !important;
+  border-color: var(--danger) !important;
 }
-.border-light {
+/* .border-light {
   border-color: #f8f9fa !important;
-}
+} */
 .border-dark {
-  border-color: #343a40 !important;
+  border-color: var(--dark) !important;
 }
 .border-white {
-  border-color: #fff !important;
+  border-color: var(--white) !important;
+}
+
+.border-gray-light {
+  border-color: var(--gray-light) !important;
+}
+
+.border-gray-white {
+  border-color: var(--gray-white) !important;
+}
+
+.border-gray {
+  border-color: var(--gray) !important;
+}
+
+.border-gray-dark {
+  border-color: var(--gray-dark) !important;
 }
 .rounded-sm {
   border-radius: 0.2rem !important;
@@ -1491,12 +1554,15 @@ button.bg-dark:hover {
 .text-gray-dark {
   color: var(--gray-dark) !important;
 }
+.text-danger {
+  color: var(--danger) !important;
+}
 
 a.text-primary:focus,
 a.text-primary:hover {
-  color: #8aff94 !important;
+  color: var(--primary) !important;
 }
-.text-secondary {
+/* .text-secondary {
   color: #6c757d !important;
 }
 a.text-secondary:focus,
@@ -1523,21 +1589,19 @@ a.text-info:hover {
 a.text-warning:focus,
 a.text-warning:hover {
   color: #ba8b00 !important;
-}
-.text-danger {
-  color: #dc3545 !important;
-}
+} */
+
 a.text-danger:focus,
 a.text-danger:hover {
-  color: #a71d2a !important;
+  color: var(--danger) !important;
 }
-.text-light {
+/* .text-light {
   color: #f8f9fa !important;
 }
 a.text-light:focus,
 a.text-light:hover {
   color: #cbd3da !important;
-}
+} */
 a.text-dark:focus,
 a.text-dark:hover {
   color: var(--black) !important;
