@@ -1,6 +1,6 @@
 <template>
   <Fragment>
-    <h1>{{ msg }}</h1>
+    <h1 class="mb-3">{{ msg }}</h1>
     <b-button type="is-primary">Primary</b-button>
   </Fragment>
 </template>

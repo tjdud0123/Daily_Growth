@@ -8,7 +8,6 @@
 import HelloWorld from './components/HelloWorld.vue';
 import Vue from 'vue';
 import Buefy from 'buefy';
-import './_global.scss';
 Vue.use(Buefy);
 
 export default {
