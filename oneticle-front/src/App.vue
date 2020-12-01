@@ -1,20 +1,19 @@
 <template>
-  <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div id="app" class="m-0">
+    <router-link to="/posts/new" exact>New Post</router-link>
+    <router-link to="/posts/detail" exact>New Post</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
 import Vue from 'vue';
 import Buefy from 'buefy';
 Vue.use(Buefy);
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld,
-  },
+  components: {},
 };
 </script>
 
