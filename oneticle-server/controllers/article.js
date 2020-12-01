@@ -31,15 +31,28 @@ module.exports = {
   saveArticle: async (req, res) => {
     const userIdx = req.decoded.userId;
     const articleIdx = req.params.aid;
-    const sendId = await ArticleModel.saveArticle(userIdx, articleIdx);
+    const type = 'article';
+    const curLevel = await UserModel.getMyLevel(userIdx);
 
+    // 아티클 저장
+    const sendId = await ArticleModel.saveArticle(userIdx, articleIdx);
     if (sendId === -1) {
       return res
         .status(CODE.DB_ERROR)
         .send(util.fail(CODE.DB_ERROR, MSG.DB_ERROR));
-    } else {
-      res.status(CODE.OK).send(util.success(CODE.NO_CONTENT, MSG.SAVE_ARTICLE));
     }
+    // 레벨 업
+    const isLevelUpdated = await UserModel.updatedMyLevel(
+      userIdx,
+      curLevel,
+      type,
+    );
+    if (isLevelUpdated === -1) {
+      return res
+        .status(CODE.DB_ERROR)
+        .send(util.fail(CODE.DB_ERROR, MSG.DB_ERROR));
+    }
+    res.status(CODE.OK).send(util.success(CODE.NO_CONTENT, MSG.SAVE_ARTICLE));
   },
   // 아티클 좋아요
   likeArticle: async (req, res) => {

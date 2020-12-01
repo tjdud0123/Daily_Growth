@@ -1,4 +1,5 @@
 const NoteModel = require('../models/note');
+const UserModel = require('../models/note');
 const util = require('../modules/util');
 const CODE = require('../modules/statusCode');
 const MSG = require('../modules/responseMessage');
@@ -9,9 +10,32 @@ module.exports = {
     const { content } = req.body;
     const userIdx = req.decoded.userId;
     const articleIdx = req.params.aid;
+    const type = 'note';
+    const curLevel = await UserModel.getMyLevel(userIdx);
+    // 노트생성
+    const isCreated = await NoteModel.createMyNote(
+      content,
+      userIdx,
+      articleIdx,
+    );
+    if (isCreated === -1) {
+      return res
+        .status(CODE.DB_ERROR)
+        .send(util.fail(CODE.DB_ERROR, MSG.DB_ERROR));
+    }
+    // 레벨 업
+    const isLevelUpdated = await UserModel.updatedMyLevel(
+      userIdx,
+      curLevel,
+      type,
+    );
+    if (isLevelUpdated === -1) {
+      return res
+        .status(CODE.DB_ERROR)
+        .send(util.fail(CODE.DB_ERROR, MSG.DB_ERROR));
+    }
 
-    const note = await NoteModel.createMyNote(content, userIdx, articleIdx);
-    res.status(CODE.OK).send(util.success(CODE.OK, MSG.ADD_NOTE, note[0]));
+    res.status(CODE.OK).send(util.success(CODE.NO_CONTENT, MSG.ADD_NOTE));
   },
   // 노트 내용 수정
   updateNote: async (req, res) => {

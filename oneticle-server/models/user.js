@@ -2,6 +2,8 @@ const pool = require('../modules/pool');
 const USER_TABLE = 'User';
 const HISTORY_TABLE = 'History';
 const NOTE_TABLE = 'Note';
+const NOTE_EXP = 100;
+const ARTICLE_EXP = 50;
 
 const user = {
   signup: async (userName, email, password, salt, job, jobDetail) => {
@@ -47,7 +49,7 @@ const user = {
     }
   },
   readProfile: async userIdx => {
-    const query = `SELECT userName, job, jobDetail FROM ${USER_TABLE} WHERE userId="${userIdx}"`;
+    const query = `SELECT userName, job, jobDetail, level FROM ${USER_TABLE} WHERE userId="${userIdx}"`;
     try {
       return await pool.queryParam(query);
     } catch (err) {
@@ -60,7 +62,7 @@ const user = {
     try {
       return await pool.queryParam(query);
     } catch (err) {
-      console.log('read profile ERROR : ', err);
+      console.log('getSavedArticles ERROR : ', err);
       throw err;
     }
   },
@@ -69,7 +71,34 @@ const user = {
     try {
       return await pool.queryParam(query);
     } catch (err) {
-      console.log('read profile ERROR : ', err);
+      console.log('getMyNotes ERROR : ', err);
+      throw err;
+    }
+  },
+  updatedMyLevel: async (userIdx, curLevel, type) => {
+    const levelInfo = { note: NOTE_EXP, article: ARTICLE_EXP };
+    const updatedLevel = curLevel + levelInfo[type];
+    const query = `UPDATE ${USER_TABLE} SET level = "${updatedLevel}" WHERE userId ="${userIdx}"`;
+    try {
+      const result = await pool.queryParam(query);
+      const isUpdated = result.insertId;
+      return isUpdated;
+    } catch (err) {
+      if (err.errno == 1062) {
+        console.log('updatedMyLevel ERROR : ', err.errno, err.code);
+        return -1;
+      }
+      console.log('updatedMyLevel ERROR : ', err);
+      throw err;
+    }
+  },
+  getMyLevel: async userIdx => {
+    const query = `SELECT level FROM ${USER_TABLE} WHERE UserId="${userIdx}"`;
+    try {
+      const level = await pool.queryParam(query);
+      return level[0] && level[0].level;
+    } catch (err) {
+      console.log('getMyLevel ERROR : ', err);
       throw err;
     }
   },
