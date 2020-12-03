@@ -1,8 +1,12 @@
 <template>
   <div id="app" class="m-0">
-    <router-link to="/posts/new" exact>New Post</router-link>
-    <router-link to="/posts/detail" exact>New Post</router-link>
-    <router-view></router-view>
+    <transition
+      name="fade"
+      mode="out-in"
+      :duration="{ enter: 400, leave: 600 }"
+    >
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
