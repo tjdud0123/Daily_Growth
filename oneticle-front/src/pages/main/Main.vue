@@ -1,6 +1,20 @@
 <template>
-  <div>
-    <h1>Main</h1>
+  <div class="d-flex flex-center p-3 flex-column">
+    <div class="d-flex flex-column align-items-center mt-large mb-3">
+      <img :src="mainLogo" class="px-4" id="main-logo" alt="mainLogo" />
+      <small class="text-primary">새싹에서 나무까지, 원티클</small>
+    </div>
+    <img
+      :src="emailLoginBtn"
+      class="px-4 mt-5"
+      id="login-btn"
+      @click="goLoginPage"
+      alt="mainLogo"
+    />
+    <div class="d-flex mt-3 align-itmes-center c-pointer" @click="goSignUpPage">
+      <span class="text-sub mr-2">아직 회원이 아니세요?</span>
+      <u class="text-sub">회원가입 하기</u>
+    </div>
   </div>
 </template>
 
@@ -9,6 +23,14 @@ export default {
   name: 'Main',
   props: {},
   components: {},
+  methods: {
+    goSignUpPage() {
+      this.$router.push({ path: 'signUp' }).catch(err => {});
+    },
+    goLoginPage() {
+      this.$router.push({ path: 'login' }).catch(err => {});
+    },
+  },
 };
 </script>
 
