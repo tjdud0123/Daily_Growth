@@ -1,12 +1,17 @@
 <template>
   <div class="d-flex flex-center p-3 flex-column">
     <div class="d-flex flex-column align-items-center mt-large mb-3">
-      <img :src="mainLogo" class="px-4" id="main-logo" alt="mainLogo" />
+      <img
+        src="../../assets/main/mainLogo.png"
+        class="px-4 fade"
+        id="main-logo"
+        alt="mainLogo"
+      />
       <small class="text-primary">새싹에서 나무까지, 원티클</small>
     </div>
     <img
-      :src="emailLoginBtn"
-      class="px-4 mt-5"
+      src="../../assets/main/loginBtn.png"
+      class="px-4 mt-5 fade"
       id="login-btn"
       @click="goLoginPage"
       alt="mainLogo"

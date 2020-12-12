@@ -17,8 +17,8 @@ const signInApi = async loginInfo => {
     console.log('[SUCCESS] signIn', data);
     return data.data;
   } catch (e) {
-    console.log('[FAIL] signIn', e);
-    throw e;
+    console.log('[FAIL] signIn', e.response.data.message);
+    return e.response.data.message;
   }
 };
 

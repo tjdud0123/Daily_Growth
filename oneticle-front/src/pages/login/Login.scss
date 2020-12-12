@@ -1,5 +1,41 @@
-h1 {
-  margin: 40px 0 0;
-  color: #424ab9;
-  font-family: 'KopubWorld-Dotum';
+h2 {
+  font-size: 20px;
+}
+
+::v-deep label {
+  text-align: left;
+  font-weight: 400;
+}
+
+::v-deep input {
+  border-radius: 6px;
+}
+
+::v-deep .field p {
+  text-align: left;
+  &.help {
+    height: 18px;
+  }
+}
+::v-deep .has-icons-right {
+  & .mdi-alert-circle::before {
+    content: '' !important;
+  }
+}
+
+::v-deep button {
+  border: none;
+  &:focus:not(:active) {
+    box-shadow: none;
+  }
+  border-radius: 12px;
+  & span {
+    font-size: 14px;
+  }
+}
+
+.active {
+  background: #49f749 !important;
+  color: black !important;
+  transition: 0.4s ease-in-out;
 }

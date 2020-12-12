@@ -27,7 +27,7 @@ const saveArticleApi = async aid => {
 // 아티클 좋아요
 const likeArticleApi = async aid => {
   try {
-    const { data } = await axios.post(`/article/like/${aid}`);
+    const { data } = await ApiConfig.post(`/article/like/${aid}`);
     console.log('[SUCCESS] likeArticle', data);
     return data.data;
   } catch (e) {
@@ -39,7 +39,7 @@ const likeArticleApi = async aid => {
 // 아티클 좋아요 취소
 const dislikeArticleApi = async aid => {
   try {
-    const { data } = await axios.delete(`/article/like/${aid}`);
+    const { data } = await ApiConfig.delete(`/article/like/${aid}`);
     console.log('[SUCCESS] dislikeArticle', data);
     return data.data;
   } catch (e) {
