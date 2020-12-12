@@ -6,7 +6,15 @@ import router from './router';
 import './style/_global.scss';
 import './style/bootstrap.css';
 
+// img src 파일
+import IMG_URLS from './common/imgUrl';
+
 Vue.config.productionTip = false;
+
+// img src 파일 사용
+Vue.mixin({
+  data: IMG_URLS,
+});
 
 new Vue({
   render: h => h(App),
