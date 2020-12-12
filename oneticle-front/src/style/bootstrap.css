@@ -881,6 +881,12 @@ button.bg-gray-dark:hover {
 .d-table-cell {
   display: table-cell !important;
 }
+
+.flex-center {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
 .d-flex {
   display: -ms-flexbox !important;
   display: flex !important;
@@ -1249,6 +1255,7 @@ button.bg-gray-dark:hover {
 .mx-5 {
   margin-left: 3rem !important;
 }
+
 .p-0 {
   padding: 0 !important;
 }
@@ -1557,6 +1564,9 @@ button.bg-gray-dark:hover {
 .text-danger {
   color: var(--danger) !important;
 }
+.text-sub {
+  color: #747474 !important;
+}
 
 a.text-primary:focus,
 a.text-primary:hover {
@@ -1640,4 +1650,7 @@ a.text-dark:hover {
 }
 .invisible {
   visibility: hidden !important;
+}
+.c-pointer {
+  cursor: pointer;
 }
