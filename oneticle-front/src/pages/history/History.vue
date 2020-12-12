@@ -1,17 +1,14 @@
 <template>
-  <Fragment>
+  <div>
     <h1>History</h1>
-  </Fragment>
+  </div>
 </template>
 
 <script>
-import { Fragment } from 'vue-fragment';
 export default {
   name: 'History',
   props: {},
-  components: {
-    Fragment,
-  },
+  components: {},
 };
 </script>
 
