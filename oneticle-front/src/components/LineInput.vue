@@ -5,12 +5,16 @@
       v-model="inputData"
       :placeholder="placeholder"
       class="w-100 input"
-      :class="{ 'is-danger': isDanger }"
+      :class="{ 'is-danger': isDanger, 'is-primary': isSuccess }"
       :type="type"
     />
     <i
       :class="{ invisible: !isDanger }"
       class="fas fa-exclamation-circle text-danger p-absolute"
+    ></i>
+    <i
+      :class="{ invisible: !isSuccess }"
+      class="fas fa-check text-primary p-absolute"
     ></i>
     <p
       class="help text-left text-danger ml-1"
@@ -32,6 +36,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isSuccess: {
+      type: Boolean,
+      default: false,
+    },
     placeholder: {
       type: String,
       default: '',
@@ -42,7 +50,7 @@ export default {
     },
     dangerText: {
       type: String,
-      default: 'text',
+      default: '',
     },
   },
   data() {
