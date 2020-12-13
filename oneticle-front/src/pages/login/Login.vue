@@ -3,30 +3,47 @@
     <top-bar class="p-fixed top"></top-bar>
     <div class="container pt-5 has-top">
       <h2 class="font-weight-bold text-left mb-5 mt-2">이메일로 로그인</h2>
-      <b-field
-        :type="{ 'is-danger': invalidEmail }"
-        label="이메일"
-        class="mb-3"
-        :message="{
-          '존재하지 않는 유저이거나 이메일 형식이 아닙니다.': invalidEmail,
-        }"
-      >
-        <b-input
+      <div class="input-container p-relative mt-4">
+        <label class="text-left d-flex flex-column">이메일</label>
+        <input
           v-model="loginFormData.email"
           placeholder="이메일을 입력해주세요"
-        ></b-input>
-      </b-field>
-      <b-field
-        label="비밀번호"
-        :type="{ 'is-danger': invalidPassword }"
-        :message="{ '비밀번호가 일치하지 않습니다': invalidPassword }"
-      >
-        <b-input
-          @change="clearState"
+          class="w-100 input"
+          :class="{ 'is-danger': invalidEmail }"
+        />
+        <i
+          :class="{ invisible: !invalidEmail }"
+          class="fas fa-exclamation-circle text-danger p-absolute"
+        ></i>
+        <p
+          class="help text-left text-danger ml-1"
+          :class="{ invisible: !invalidEmail }"
+        >
+          존재하지 않는 유저이거나 이메일 형식이 아닙니다.
+        </p>
+      </div>
+
+      <div class="input-container p-relative mt-3">
+        <label class="text-left d-flex flex-column">패스워드</label>
+        <input
+          type="password"
           v-model="loginFormData.password"
-          placeholder="비밀번호를 입력해주세요"
-        ></b-input>
-      </b-field>
+          placeholder="패스워드를 입력해주세요"
+          class="w-100 input"
+          :class="{ 'is-danger': invalidPassword }"
+        />
+        <i
+          :class="{ invisible: !invalidPassword }"
+          class="fas fa-exclamation-circle text-danger p-absolute"
+        ></i>
+        <p
+          class="help text-left text-danger ml-1"
+          :class="{ invisible: !invalidPassword }"
+        >
+          비밀번호가 일치하지 않습니다
+        </p>
+      </div>
+
       <b-button
         @click.prevent="onLogin"
         class="mt-4 font-weight-bold w-75 bg-gray-dark p-4 text-white"
@@ -64,7 +81,6 @@ export default {
       // 성공
       if (response.accessToken) {
         localStorage.setItem('token', response.accessToken);
-        //localStorage.clear();
         this.$router.push({ path: 'home' });
         return;
       }

@@ -11,18 +11,6 @@ h2 {
   border-radius: 6px;
 }
 
-::v-deep .field p {
-  text-align: left;
-  &.help {
-    height: 18px;
-  }
-}
-::v-deep .has-icons-right {
-  & .mdi-alert-circle::before {
-    content: '' !important;
-  }
-}
-
 ::v-deep button {
   border: none;
   &:focus:not(:active) {
@@ -38,4 +26,31 @@ h2 {
   background: #49f749 !important;
   color: black !important;
   transition: 0.4s ease-in-out;
+}
+
+.input-container i {
+  right: 10px;
+  top: 44px;
+}
+
+input {
+  outline: none;
+  border-radius: 6px;
+  background-color: white;
+  border-color: #dbdbdb;
+  border: 1px solid #dbdbdb;
+  color: #363636;
+  display: inline-flex;
+  font-size: 1rem;
+  height: 2.5em;
+  justify-content: flex-start;
+  line-height: 1.5;
+  padding-bottom: calc(0.5em - 1px);
+  padding-left: calc(0.75em - 1px);
+  padding-right: calc(0.75em - 1px);
+  padding-top: calc(0.5em - 1px);
+  &:focus:not(.is-danger) {
+    border-color: #28f92d;
+    box-shadow: 0 0 0 0.125em rgba(40, 249, 45, 0.25);
+  }
 }
