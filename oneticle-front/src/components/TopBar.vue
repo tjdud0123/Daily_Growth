@@ -8,7 +8,14 @@
       @click="goBack"
     />
     <h3 class="m-0 font-weight-bold">{{ title }}</h3>
-    <h4 class="m-0 p-3" style="width:66px">{{ rightText }}</h4>
+    <h4
+      class="m-0 p-3 font-weight-bold"
+      :class="{ 'text-dark': canNext }"
+      style="width:66px"
+      @click="goNext"
+    >
+      {{ rightText }}
+    </h4>
   </div>
 </template>
 
@@ -35,6 +42,12 @@ export default {
       type: Boolean,
       default: true,
     },
+
+    // avail Next
+    canNext: {
+      type: Boolean,
+      default: false,
+    },
   },
   components: {},
 
@@ -48,6 +61,11 @@ export default {
     goBackStep() {
       this.$emit('backStep');
     },
+    goNext() {
+      if (this.canNext) {
+        this.$emit('goNext');
+      }
+    },
   },
 };
 </script>
@@ -60,5 +78,8 @@ export default {
 #topBar {
   height: 50px;
   width: 100vw;
+}
+h4 {
+  color: #b5b5b5;
 }
 </style>

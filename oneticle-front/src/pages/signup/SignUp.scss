@@ -1,5 +1,47 @@
-h1 {
-  margin: 40px 0 0;
-  color: #424ab9;
-  font-family: 'KopubWorld-Dotum';
+#signUp-progress {
+  border-radius: 0;
+  height: 2px;
+  top: 0;
+  width: 100vw;
+}
+::v-deep .progress,
+.progress-wrapper.is-not-native {
+  border-radius: 0 !important;
+  width: 99vw;
+}
+
+#job-img {
+  width: 70vw;
+  position: fixed;
+  bottom: -20px;
+  right: -40px;
+}
+
+li {
+  text-align: left;
+}
+#step-3 li {
+  font-size: 32px;
+}
+
+#step-3 li {
+  font-size: 24px;
+}
+
+img#start-char {
+  width: 45%;
+  min-width: 100px;
+  max-width: 500px;
+}
+
+#login-btn {
+  width: 90%;
+  min-width: 180px;
+  max-width: 360px;
+}
+.font-20 {
+  font-size: 20px;
+}
+.mt-large {
+  margin-top: 30vh;
 }
