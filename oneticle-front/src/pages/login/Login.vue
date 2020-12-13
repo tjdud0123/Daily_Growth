@@ -3,46 +3,19 @@
     <top-bar class="p-fixed top"></top-bar>
     <div class="container pt-5 has-top">
       <h2 class="font-weight-bold text-left mb-5 mt-2">이메일로 로그인</h2>
-      <div class="input-container p-relative mt-4">
-        <label class="text-left d-flex flex-column">이메일</label>
-        <input
-          v-model="loginFormData.email"
-          placeholder="이메일을 입력해주세요"
-          class="w-100 input"
-          :class="{ 'is-danger': invalidEmail }"
-        />
-        <i
-          :class="{ invisible: !invalidEmail }"
-          class="fas fa-exclamation-circle text-danger p-absolute"
-        ></i>
-        <p
-          class="help text-left text-danger ml-1"
-          :class="{ invisible: !invalidEmail }"
-        >
-          존재하지 않는 유저이거나 이메일 형식이 아닙니다.
-        </p>
-      </div>
-
-      <div class="input-container p-relative mt-3">
-        <label class="text-left d-flex flex-column">패스워드</label>
-        <input
-          type="password"
-          v-model="loginFormData.password"
-          placeholder="패스워드를 입력해주세요"
-          class="w-100 input"
-          :class="{ 'is-danger': invalidPassword }"
-        />
-        <i
-          :class="{ invisible: !invalidPassword }"
-          class="fas fa-exclamation-circle text-danger p-absolute"
-        ></i>
-        <p
-          class="help text-left text-danger ml-1"
-          :class="{ invisible: !invalidPassword }"
-        >
-          비밀번호가 일치하지 않습니다
-        </p>
-      </div>
+      <line-input
+        title="이메일"
+        placeholder="이메일을 입력해주세요"
+        @setValue="setEmail"
+        :isDanger="invalidEmail"
+      ></line-input>
+      <line-input
+        title="패스워드"
+        placeholder="패스워드를 입력해주세요"
+        @setValue="setPassword"
+        :isDanger="invalidPassword"
+        type="password"
+      ></line-input>
 
       <b-button
         @click.prevent="onLogin"
@@ -57,6 +30,7 @@
 <script>
 import resMsg from '../../api/responseMessage';
 import TopBar from '../../components/TopBar';
+import LineInput from '../../components/LineInput';
 import { signInApi } from '../../api/userApi';
 export default {
   name: 'Login',
@@ -72,7 +46,7 @@ export default {
       invalidPassword: false,
     };
   },
-  components: { TopBar },
+  components: { TopBar, LineInput },
 
   methods: {
     async onLogin() {
@@ -92,9 +66,14 @@ export default {
       }
     },
     clearState() {
-      console.log(this.invalidEmail);
       this.invalidEmail = false;
       this.invalidPassword = false;
+    },
+    setEmail(value) {
+      this.loginFormData.email = value;
+    },
+    setPassword(value) {
+      this.loginFormData.password = value;
     },
   },
   watch: {
