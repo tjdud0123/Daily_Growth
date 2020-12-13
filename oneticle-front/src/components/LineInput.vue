@@ -16,7 +16,7 @@
       class="help text-left text-danger ml-1"
       :class="{ invisible: !isDanger }"
     >
-      존재하지 않는 유저이거나 이메일 형식이 아닙니다.
+      {{ dangerText }}
     </p>
   </div>
 </template>
@@ -37,6 +37,10 @@ export default {
       default: '',
     },
     type: {
+      type: String,
+      default: 'text',
+    },
+    dangerText: {
       type: String,
       default: 'text',
     },

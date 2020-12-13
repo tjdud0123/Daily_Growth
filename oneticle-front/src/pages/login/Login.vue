@@ -8,6 +8,7 @@
         placeholder="이메일을 입력해주세요"
         @setValue="setEmail"
         :isDanger="invalidEmail"
+        dangerText="존재하지 않는 유저이거나 이메일 형식이 아닙니다."
       ></line-input>
       <line-input
         title="패스워드"
@@ -15,6 +16,7 @@
         @setValue="setPassword"
         :isDanger="invalidPassword"
         type="password"
+        dangerText="비밀번호가 일치하지 않습니다."
       ></line-input>
 
       <b-button
