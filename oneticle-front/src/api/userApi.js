@@ -26,10 +26,10 @@ const signUpApi = async userInfo => {
   try {
     const { data } = await ApiConfig.post(`/user/signup`, userInfo);
     console.log('[SUCCESS] signUp', data);
-    return data.data;
+    return data;
   } catch (e) {
     console.log('[FAIL] signUp', e);
-    throw e;
+    return e.response.data.message;
   }
 };
 

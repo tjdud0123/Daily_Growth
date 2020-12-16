@@ -24,9 +24,9 @@
           title="이메일"
           placeholder="이메일을 입력해주세요"
           @setValue="setEmail"
-          :isDanger="!noEmail && invalidEmail"
-          :isSuccess="!noEmail && !invalidEmail"
-          dangerText="잘못된 형식의 이메일 입니다."
+          :isDanger="alreadyId || (!noEmail && invalidEmail)"
+          :isSuccess="!alreadyId && !noEmail && !invalidEmail"
+          :dangerText="emailSubText"
         ></line-input>
         <line-input
           title="패스워드"
@@ -68,7 +68,7 @@
           <li
             v-for="(value, index) in jobDetailList[signUpFormData.job]"
             v-bind:key="index"
-            class="py-4"
+            class="py-4 font-20"
             @click="selectJobDetail(value)"
             :class="{
               'font-weight-bold': signUpFormData.jobDetail === value,
@@ -127,25 +127,28 @@ export default {
       },
       jobList: jobInfo.jobList,
       jobDetailList: jobInfo.jobDetailList,
+      emailSubText: '잘못된 형식의 이메일 입니다.',
+      alreadyId: false,
     };
   },
   methods: {
     async onSignUp() {
       const response = await signUpApi(this.signUpFormData);
-      console.log(response);
       // 성공
-      if (response.accessToken) {
+      if (response?.success) {
         this.allCompleted = true;
         return;
       }
       //실패
-      if (response === resMsg.NO_USER) {
-        this.invalidEmail = true;
-      } else if (response === resMsg.MISS_MATCH_PW) {
-        this.invalidPassword = true;
+      else if (response === resMsg.ALREADY_ID) {
+        this.alreadyId = true;
+        this.emailSubText = resMsg.ALREADY_ID;
+        this.step = 1;
       }
     },
     setEmail(value) {
+      this.alreadyId = false;
+      this.emailSubText = '잘못된 형식의 이메일 입니다.';
       this.signUpFormData.email = value;
     },
     setPassword(value) {
@@ -155,7 +158,7 @@ export default {
       this.signUpFormData.userName = value;
     },
     goNextStep() {
-      this.step < 4 ? this.step++ : (this.allCompleted = true);
+      this.step < 4 ? this.step++ : this.onSignUp();
     },
     backStep() {
       this.step--;
