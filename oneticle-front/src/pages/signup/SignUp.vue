@@ -101,6 +101,11 @@
         @click="goStart"
       />
     </div>
+    <b-loading
+      :is-full-page="true"
+      v-model="isLoading"
+      :can-cancel="false"
+    ></b-loading>
   </div>
 </template>
 
@@ -129,15 +134,16 @@ export default {
       jobDetailList: jobInfo.jobDetailList,
       emailSubText: '잘못된 형식의 이메일 입니다.',
       alreadyId: false,
+      isLoading: false,
     };
   },
   methods: {
     async onSignUp() {
+      this.isLoading = true;
       const response = await signUpApi(this.signUpFormData);
       // 성공
       if (response?.success) {
         this.allCompleted = true;
-        return;
       }
       //실패
       else if (response === resMsg.ALREADY_ID) {
@@ -145,6 +151,7 @@ export default {
         this.emailSubText = resMsg.ALREADY_ID;
         this.step = 1;
       }
+      this.isLoading = false;
     },
     setEmail(value) {
       this.alreadyId = false;

@@ -26,6 +26,11 @@
         >로그인하기</b-button
       >
     </div>
+    <b-loading
+      :is-full-page="true"
+      v-model="isLoading"
+      :can-cancel="false"
+    ></b-loading>
   </div>
 </template>
 
@@ -39,6 +44,7 @@ export default {
   props: {},
   data() {
     return {
+      isLoading: false,
       loginFormData: {
         email: '',
         password: '',
@@ -52,12 +58,14 @@ export default {
 
   methods: {
     async onLogin() {
+      this.isLoading = true;
       const response = await signInApi(this.loginFormData);
       console.log(response);
       // 성공
       if (response.accessToken) {
         localStorage.setItem('token', response.accessToken);
         this.$router.push({ path: 'home' });
+        this.isLoading = false;
         return;
       }
       //실패
@@ -66,6 +74,7 @@ export default {
       } else if (response === resMsg.MISS_MATCH_PW) {
         this.invalidPassword = true;
       }
+      this.isLoading = false;
     },
     clearState() {
       this.invalidEmail = false;
