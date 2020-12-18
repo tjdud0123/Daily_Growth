@@ -10,7 +10,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem('token');
-  if (to.name === 'main' && token) {
+  if (to.name === 'main' && token !== 'null') {
     next('/home');
     return;
   } else next();

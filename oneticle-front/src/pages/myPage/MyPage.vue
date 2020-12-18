@@ -44,6 +44,7 @@
           <li class="p-3">내 구독 내역</li>
           <li class="p-3">내 문의</li>
           <li class="p-3">내 정보 수정</li>
+          <li class="p-3" @click.prevent="onLogout">로그아웃</li>
         </ul>
       </div>
     </div>
@@ -89,6 +90,10 @@ export default {
       }
       this.myProfile = response.data;
       this.isLoading = false;
+    },
+    onLogout() {
+      localStorage.setItem('token', null);
+      this.$router.push({ path: '/' });
     },
   },
   computed: {
