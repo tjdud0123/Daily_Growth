@@ -1,5 +1,26 @@
 h1 {
-  margin: 40px 0 0;
-  color: #424ab9;
-  font-family: 'KopubWorld-Dotum';
+  font-size: 24px;
+}
+ul {
+  border-top: 10px solid #e6e6e6;
+}
+li {
+  border-bottom: 2px solid #e6e6e6;
+  color: black;
+}
+
+::v-deep .progress,
+.progress-wrapper.is-not-native {
+  border-radius: 4px !important;
+  height: 8px;
+}
+
+#charCircle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+  background-size: 60px;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
