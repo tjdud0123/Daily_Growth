@@ -7,17 +7,32 @@
     >
       <router-view></router-view>
     </transition>
+    <div v-show="showTabBar">
+      <tab-bar></tab-bar>
+    </div>
   </div>
 </template>
 
 <script>
+import TabBar from './components/TabBar';
+
 import Vue from 'vue';
 import Buefy from 'buefy';
 Vue.use(Buefy);
 
 export default {
   name: 'App',
-  components: {},
+  components: { TabBar },
+  data() {
+    return { showTabBar: false };
+  },
+  watch: {
+    $route(to, from) {
+      this.showTabBar = ['HOME', 'HISTORY', 'MY'].includes(to.name)
+        ? true
+        : false;
+    },
+  },
 };
 </script>
 
