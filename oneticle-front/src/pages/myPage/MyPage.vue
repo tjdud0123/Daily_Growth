@@ -85,6 +85,7 @@ export default {
       const response = await readProfileApi();
       // 토큰 만료
       if (response.status === 401) {
+        localStorage.setItem('token', null);
         this.$router.push({ path: '/' });
         return;
       }
