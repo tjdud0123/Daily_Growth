@@ -113,7 +113,7 @@
 import resMsg from '../../api/responseMessage';
 import TopBar from '../../components/TopBar';
 import LineInput from '../../components/LineInput';
-import { signUpApi } from '../../api/userApi';
+import { signUpApi, signInApi } from '../../api/userApi';
 import { jobInfo } from '../../common/C';
 export default {
   name: 'SignUp',
@@ -153,6 +153,18 @@ export default {
       }
       this.isLoading = false;
     },
+    async onLogin() {
+      this.isLoading = true;
+      const { email, password } = this.signUpFormData;
+      const response = await signInApi({ email, password });
+      // 성공
+      if (response.accessToken) {
+        localStorage.setItem('token', response.accessToken);
+        this.$router.push({ path: 'home' });
+        this.isLoading = false;
+        return;
+      }
+    },
     setEmail(value) {
       this.alreadyId = false;
       this.emailSubText = '잘못된 형식의 이메일 입니다.';
@@ -177,7 +189,7 @@ export default {
       this.signUpFormData.jobDetail = jobDetail;
     },
     goStart() {
-      this.$router.push({ path: '/' });
+      this.onLogin();
     },
   },
   computed: {
@@ -227,14 +239,6 @@ export default {
       return require(`../../assets/signUp/char${this.jobList.indexOf(
         this.signUpFormData.job,
       )}.png`);
-    },
-  },
-  watch: {
-    signUpFormData: {
-      handler: function(val, oldVal) {
-        console.log(val, oldVal);
-      },
-      deep: true, // '객체 주소값'이 아닌 '값'까지 비교할 때
     },
   },
 };

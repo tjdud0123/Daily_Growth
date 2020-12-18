@@ -60,7 +60,6 @@ export default {
     async onLogin() {
       this.isLoading = true;
       const response = await signInApi(this.loginFormData);
-      console.log(response);
       // 성공
       if (response.accessToken) {
         localStorage.setItem('token', response.accessToken);

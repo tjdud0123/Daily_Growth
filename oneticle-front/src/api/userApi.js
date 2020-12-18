@@ -12,6 +12,7 @@ const readProfileApi = async () => {
 };
 
 const signInApi = async loginInfo => {
+  ApiConfig.defaults.headers.jwt = localStorage.getItem('token');
   try {
     const { data } = await ApiConfig.post(`/user/signin`, loginInfo);
     console.log('[SUCCESS] signIn', data);
