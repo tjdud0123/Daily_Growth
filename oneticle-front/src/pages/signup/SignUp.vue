@@ -114,7 +114,7 @@ import resMsg from '../../api/responseMessage';
 import TopBar from '../../components/TopBar';
 import LineInput from '../../components/LineInput';
 import { signUpApi, signInApi } from '../../api/userApi';
-import { jobInfo } from '../../common/C';
+import { jobInfo } from '../../common/info';
 export default {
   name: 'SignUp',
   props: {},

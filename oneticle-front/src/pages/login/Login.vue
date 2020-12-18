@@ -7,6 +7,7 @@
         title="이메일"
         placeholder="이메일을 입력해주세요"
         @setValue="setEmail"
+        @onLogin="onLogin"
         :isDanger="invalidEmail"
         dangerText="존재하지 않는 유저이거나 이메일 형식이 아닙니다."
       ></line-input>
@@ -14,6 +15,7 @@
         title="패스워드"
         placeholder="패스워드를 입력해주세요"
         @setValue="setPassword"
+        @onLogin="onLogin"
         :isDanger="invalidPassword"
         type="password"
         dangerText="비밀번호가 일치하지 않습니다."
@@ -22,7 +24,7 @@
       <b-button
         @click.prevent="onLogin"
         class="mt-4 font-weight-bold w-75 bg-gray-dark p-4 text-white"
-        :class="{ active: loginFormData.email && loginFormData.password }"
+        :class="{ active: !noData }"
         >로그인하기</b-button
       >
     </div>
@@ -58,11 +60,11 @@ export default {
 
   methods: {
     async onLogin() {
+      if (this.noData) return;
       this.isLoading = true;
       const response = await signInApi(this.loginFormData);
       // 성공
       if (response.accessToken) {
-        localStorage.setItem('token', response.accessToken);
         this.$router.push({ path: 'home' });
         this.isLoading = false;
         return;
@@ -84,6 +86,11 @@ export default {
     },
     setPassword(value) {
       this.loginFormData.password = value;
+    },
+  },
+  computed: {
+    noData() {
+      return !this.loginFormData.email || !this.loginFormData.password;
     },
   },
   watch: {

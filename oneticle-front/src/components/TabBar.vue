@@ -27,26 +27,23 @@
 <script>
 export default {
   data() {
-    return {
-      isSelcted: 'HOME',
-    };
+    return {};
   },
+
   methods: {
     selectTab(tab) {
-      console.log(tab);
-      this.isSelcted = tab;
       this.$router.push({ name: tab });
     },
   },
   computed: {
     isHomeActive() {
-      return this.isSelcted === 'HOME' ? '_active' : '';
+      return this.$route.name === 'HOME' ? '_active' : '';
     },
     isHistoryActive() {
-      return this.isSelcted === 'HISTORY' ? '_active' : '';
+      return this.$route.name === 'HISTORY' ? '_active' : '';
     },
     isMyActive() {
-      return this.isSelcted === 'MY' ? '_active' : '';
+      return this.$route.name === 'MY' ? '_active' : '';
     },
     homeSrc() {
       return require(`../assets/icon/home${this.isHomeActive}.png`);

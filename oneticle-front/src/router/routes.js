@@ -6,7 +6,7 @@ export default [
     name: 'signup',
     component: () => import('../pages/signup'),
   },
-  { path: '/home', name: 'home', component: () => import('../pages/home') },
+  { path: '/home', name: 'HOME', component: () => import('../pages/home') },
   {
     path: '/articleView',
     name: 'articleView',
@@ -14,12 +14,12 @@ export default [
   },
   {
     path: '/history',
-    name: 'history',
+    name: 'HISTORY',
     component: () => import('../pages/history'),
   },
   {
     path: '/myPage',
-    name: 'myPage',
+    name: 'MY',
     component: () => import('../pages/myPage'),
   },
   { path: '*', component: { template: '<div>Not Found</div>' } },

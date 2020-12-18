@@ -7,6 +7,7 @@
       class="w-100 input"
       :class="{ 'is-danger': isDanger, 'is-primary': isSuccess }"
       :type="type"
+      @keyup.enter="onLogin"
     />
     <i
       :class="{ invisible: !isDanger }"
@@ -58,7 +59,11 @@ export default {
       inputData: '',
     };
   },
-  methods: {},
+  methods: {
+    onLogin() {
+      this.$emit('onLogin');
+    },
+  },
   watch: {
     inputData: function(val, oldVal) {
       this.$emit('setValue', this.inputData);

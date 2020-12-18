@@ -24,13 +24,18 @@ export default {
   name: 'App',
   components: { TabBar },
   data() {
-    return { showTabBar: false };
+    return { showTabBar: false, currentRoute: this.$route.name };
   },
-  watch: {
-    $route(to, from) {
+  methods: {
+    setShowTab(to) {
       this.showTabBar = ['HOME', 'HISTORY', 'MY'].includes(to.name)
         ? true
         : false;
+    },
+  },
+  watch: {
+    $route(to, from) {
+      this.setShowTab(to);
     },
   },
 };

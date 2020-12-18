@@ -7,15 +7,15 @@ const readProfileApi = async () => {
     return data;
   } catch (e) {
     console.log('[FAIL] readProfile', e);
-    throw e;
   }
 };
 
 const signInApi = async loginInfo => {
-  ApiConfig.defaults.headers.jwt = localStorage.getItem('token');
   try {
     const { data } = await ApiConfig.post(`/user/signin`, loginInfo);
     console.log('[SUCCESS] signIn', data);
+    ApiConfig.defaults.headers.jwt = data.data.accessToken; // api 토큰 바꿔치기
+    localStorage.setItem('token', data.data.accessToken); // 자동로그인을 위해 저장
     return data.data;
   } catch (e) {
     console.log('[FAIL] signIn', e.response.data.message);
