@@ -43,7 +43,6 @@ import LineInput from '../../components/LineInput';
 import { signInApi } from '../../api/userApi';
 export default {
   name: 'Login',
-  props: {},
   data() {
     return {
       isLoading: false,

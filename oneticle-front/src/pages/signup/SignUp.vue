@@ -117,7 +117,6 @@ import { signUpApi, signInApi } from '../../api/userApi';
 import { jobInfo } from '../../common/info';
 export default {
   name: 'SignUp',
-  props: {},
   components: { TopBar, LineInput },
   data() {
     return {

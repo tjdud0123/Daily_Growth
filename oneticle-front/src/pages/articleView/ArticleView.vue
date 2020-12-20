@@ -7,7 +7,6 @@
 <script>
 export default {
   name: 'ArticleView',
-  props: {},
   components: {},
 };
 </script>

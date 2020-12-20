@@ -26,7 +26,6 @@
 <script>
 export default {
   name: 'Main',
-  props: {},
   components: {},
   methods: {
     goSignUpPage() {

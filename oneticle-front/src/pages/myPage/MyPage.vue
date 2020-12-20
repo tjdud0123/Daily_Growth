@@ -61,7 +61,6 @@ import { readProfileApi } from '../../api/userApi';
 import { levelInfo } from '../../common/info';
 export default {
   name: 'MyPage',
-  props: {},
   components: {},
   data() {
     return {

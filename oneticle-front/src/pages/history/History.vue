@@ -7,7 +7,6 @@
 <script>
 export default {
   name: 'History',
-  props: {},
   components: {},
 };
 </script>
