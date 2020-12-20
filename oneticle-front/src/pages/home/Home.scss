@@ -10,3 +10,35 @@ h1 {
   min-width: 130px;
   max-width: 570px;
 }
+
+::v-deep .swiper {
+  &-wrapper {
+    height: auto !important;
+  }
+  &-container {
+    height: 480px !important;
+  }
+  &-slide-active {
+    z-index: 999;
+  }
+}
+::v-deep .swiper-slide {
+  transition: 0s;
+  transform-origin: center center;
+}
+::v-deep .swiper-slide-prev {
+  right: -200px;
+  transform: scale(0.6);
+  filter: blur(4px);
+}
+
+::v-deep .swiper-slide-next {
+  left: -200px;
+  transform: scale(0.6);
+  filter: blur(4px);
+}
+
+small {
+  position: relative;
+  top: -12px;
+}
