@@ -12,6 +12,7 @@
     "buefy": "^0.9.4",
     "core-js": "^3.6.5",
     "eslint-config-prettier": "^6.15.0",
+    "moment": "^2.29.1",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "vue": "^2.6.11",
