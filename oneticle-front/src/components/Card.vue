@@ -8,7 +8,7 @@
     ></div>
     <div id="info-box" class="container text-left p-4">
       <h1 class="text-dark font-weight-bold">
-        {{ article.title }}
+        {{ article.title || article.articleTitle }}
       </h1>
       <small class="gray">{{ createdDate }}</small>
       <p class="gray my-4">{{ article.previewText }}</p>
@@ -35,7 +35,9 @@ export default {
       );
     },
     createdDate() {
-      return moment(this.article?.createdAt).format('L');
+      return this.article?.ArticleCreatedAt
+        ? moment(this.article?.ArticleCreatedAt).format('L')
+        : moment(this.article?.createdAt).format('L');
     },
   },
 };
@@ -72,6 +74,7 @@ p {
 .gradient-box {
   position: absolute;
   bottom: 0;
+  left: 0;
   height: 104px;
   width: 100%;
   background: linear-gradient(

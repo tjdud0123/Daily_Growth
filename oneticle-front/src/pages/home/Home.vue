@@ -3,25 +3,63 @@
     <h1 class="font-weight-bold text-left my-3">
       {{ todayDate }}<br />오늘의 글
     </h1>
-    <div class="d-flex justify-content-center w-100 mt-5"></div>
-    <div id="swipe-container">
-      <swiper ref="swiper" class="swiper" :options="swiperOption">
-        <swiper-slide
-          class="d-flex justify-content-center"
-          v-for="(value, index) in todayArticles"
-          v-bind:key="index"
-          ><card :article="value"></card
-        ></swiper-slide>
-      </swiper>
-      <small class="mt-n2"><b>스와이프</b>해서 다른 글 보기</small>
+
+    <div
+      id="content-container"
+      v-if="
+        !isLoading &&
+          !isRestToday &&
+          isArriveTime &&
+          (savedArticle || !noArticles)
+      "
+      class="mt-5"
+    >
+      <!-- 스와이프 -->
+      <div id="swipe-container" v-if="!savedArticle">
+        <swiper ref="swiper" class="swiper" :options="swiperOption">
+          <swiper-slide
+            class="d-flex justify-content-center"
+            v-for="(value, index) in todayArticles"
+            v-bind:key="index"
+            ><card
+              @click.native="saveArticle(value.article_id)"
+              :article="value"
+            ></card
+          ></swiper-slide>
+          <swiper-slide class="d-flex justify-content-center">
+            <div
+              id="blankCard"
+              class="flex-center flex-column text-dark"
+              @click="setRest"
+            >
+              마음에 드는 글이 없나요?
+              <span class="text-primary font-weight-bold mt-2"
+                >오늘은 넘어가기</span
+              >
+            </div>
+          </swiper-slide>
+        </swiper>
+        <small class="mt-n2"><b>스와이프</b>해서 다른 글 보기</small>
+      </div>
+      <!-- 저장된 글 -->
+      <div
+        id="saved-container"
+        class="d-flex justify-content-center"
+        v-if="savedArticle"
+      >
+        <card
+          @click.native="goArticleView(savedArticle, false)"
+          :article="savedArticle"
+        ></card>
+      </div>
     </div>
 
     <div
       id="noArticle"
       class="d-flex flex-column align-items-center"
-      v-if="!isLoading && (!isArriveTime || noArticles)"
+      v-else-if="!isLoading"
     >
-      <balloon text="아직 글이 도착하지 않았어요!"></balloon>
+      <balloon :text="balloonMsg"></balloon>
       <img id="no-article-img" src="../../assets/home/notyet.png" alt="" />
     </div>
     <b-loading
@@ -33,7 +71,12 @@
 </template>
 
 <script>
-import { getTodayArticlesApi } from '../../api/articleApi';
+import {
+  getTodayArticlesApi,
+  saveArticleApi,
+  getTodaySavedApi,
+  getArticleByIdApi,
+} from '../../api/articleApi';
 import moment from 'moment';
 import 'moment/locale/ko';
 import Balloon from '../../components/Balloon.vue';
@@ -48,6 +91,8 @@ export default {
       isLoading: false,
       todayArticles: [],
       savedArticle: null,
+      today: moment().format('L'),
+      isRestToday: false,
       swiperOption: {
         speed: 400,
         effect: 'coverflow',
@@ -68,10 +113,31 @@ export default {
   directives: {
     swiper: directive,
   },
-  mounted() {
-    this.getTodayArticles();
+  created() {
+    //localStorage.removeItem('isRestToday');
+    this.setIsRestToday();
+  },
+  async mounted() {
+    if (!this.isRestToday) {
+      await this.getTodaySaved();
+      this.savedArticle || (await this.getTodayArticles());
+    }
   },
   methods: {
+    async getTodaySaved() {
+      this.isLoading = true;
+      const response = await getTodaySavedApi();
+      // 토큰 만료
+      if (response.status === 401) {
+        localStorage.setItem('token', null);
+        this.$router.push({ path: '/' });
+        return;
+      }
+      if (response.length !== 0) {
+        this.savedArticle = response[0];
+        this.isLoading = false;
+      }
+    },
     async getTodayArticles() {
       this.isLoading = true;
       const response = await getTodayArticlesApi();
@@ -83,6 +149,31 @@ export default {
       }
       this.todayArticles = response.data;
       this.isLoading = false;
+    },
+
+    async saveArticle(aid) {
+      this.isLoading = true;
+      const response = await saveArticleApi(aid);
+      // 토큰 만료
+      if (response.status === 401) {
+        localStorage.setItem('token', null);
+        this.$router.push({ path: '/' });
+        return;
+      }
+      const article = await getArticleByIdApi(aid);
+      this.isLoading = false;
+      this.goArticleView(article, true);
+    },
+    goArticleView(article, isToast) {
+      console.log(article, isToast);
+      this.$router.push({ path: '/articleView', query: { article, isToast } });
+    },
+    setRest() {
+      localStorage.setItem('isRestToday', this.today);
+      this.isRestToday = true;
+    },
+    setIsRestToday() {
+      this.isRestToday = localStorage.getItem('isRestToday') === this.today;
     },
   },
   computed: {
@@ -100,6 +191,11 @@ export default {
         .format('LT')
         .split(' ');
       return time[0] === '오후' || time[1].split(':')[0] >= 7;
+    },
+    balloonMsg() {
+      return this.isRestToday
+        ? '오늘은 쉴래요!'
+        : '아직 글이 도착하지 않았어요!';
     },
   },
 };

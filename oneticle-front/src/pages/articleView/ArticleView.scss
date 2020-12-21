@@ -1,5 +1,11 @@
-h1 {
-  margin: 40px 0 0;
-  color: #424ab9;
-  font-family: 'KopubWorld-Dotum';
+iframe {
+  width: 100%;
+  height: calc(100vh - 133px);
+}
+
+::v-deep .font-small {
+  font-size: 12px !important;
+}
+::v-deep .toast {
+  border-radius: 10px !important;
 }

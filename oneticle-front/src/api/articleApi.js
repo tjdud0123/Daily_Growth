@@ -1,3 +1,4 @@
+import moment from 'moment';
 import ApiConfig from './_config';
 
 // 오늘의 아티클 받아보기
@@ -8,7 +9,35 @@ const getTodayArticlesApi = async () => {
     return data;
   } catch (e) {
     console.log('[FAIL] getTodayArticles', e);
-    throw e;
+  }
+};
+
+// 오늘의 저장된 아티클 받아보기
+const getTodaySavedApi = async () => {
+  try {
+    const { data } = await ApiConfig.get(`/history`);
+    if (data.status === 401) {
+      return data;
+    }
+    const today = moment().format('L');
+    const todaySaved = data.data.filter(
+      a => moment(a.date).format('L') === today,
+    );
+    return todaySaved;
+  } catch (e) {
+    console.log('[FAIL] getTodayArticles', e);
+  }
+};
+
+// 아티클 정보 가져오기
+const getArticleByIdApi = async aid => {
+  try {
+    const { data } = await ApiConfig.get(`/history`);
+    console.log(data.data);
+    const response = data.data.filter(a => a.article_id === aid);
+    return response[0];
+  } catch (e) {
+    console.log('[FAIL] getTodayArticles', e);
   }
 };
 
@@ -17,10 +46,9 @@ const saveArticleApi = async aid => {
   try {
     const { data } = await ApiConfig.post(`/article/save/${aid}`);
     console.log('[SUCCESS] saveArticle', data);
-    return data.data;
+    return data;
   } catch (e) {
     console.log('[FAIL] saveArticle', e);
-    throw e;
   }
 };
 
@@ -32,7 +60,6 @@ const likeArticleApi = async aid => {
     return data.data;
   } catch (e) {
     console.log('[FAIL] likeArticle', e);
-    throw e;
   }
 };
 
@@ -44,11 +71,12 @@ const dislikeArticleApi = async aid => {
     return data.data;
   } catch (e) {
     console.log('[FAIL] dislikeArticle', e);
-    throw e;
   }
 };
 
 export {
+  getTodaySavedApi,
+  getArticleByIdApi,
   getTodayArticlesApi,
   saveArticleApi,
   likeArticleApi,

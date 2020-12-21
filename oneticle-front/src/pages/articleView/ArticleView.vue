@@ -1,13 +1,29 @@
 <template>
   <div>
-    <h1>ArticleView</h1>
+    <top-bar :title="article.articleTitle"></top-bar>
+
+    <iframe ref="frame" id="article-view" :src="article.linkUrl"> </iframe>
+
+    <article-bar :isToast="isToast" :article="article"></article-bar>
   </div>
 </template>
 
 <script>
+import ArticleBar from '../../components/ArticleBar';
+import TopBar from '../../components/TopBar';
 export default {
   name: 'ArticleView',
-  components: {},
+  components: { ArticleBar, TopBar },
+  data() {
+    return {
+      article: this.$route.query.article,
+      isToast: this.$route.query.isToast === 'true',
+    };
+  },
+  created() {
+    this.article.article_id || this.$router.go(-1);
+  },
+  methods: {},
 };
 </script>
 

@@ -7,7 +7,9 @@
       id="back_arrow"
       @click="goBack"
     />
-    <h3 class="m-0 font-weight-bold">{{ title }}</h3>
+    <h3 class="m-0 font-weight-bold text-truncate text-dark">
+      {{ title }}
+    </h3>
     <h4
       class="m-0 p-3 font-weight-bold"
       :class="{ 'text-dark': canNext }"
@@ -49,8 +51,6 @@ export default {
       default: false,
     },
   },
-  components: {},
-
   methods: {
     goBack() {
       this.backRoute ? this.goBackPage() : this.goBackStep();
@@ -81,5 +81,8 @@ export default {
 }
 h4 {
   color: #b5b5b5;
+}
+h3 {
+  max-width: 200px;
 }
 </style>
