@@ -57,7 +57,7 @@ const likeArticleApi = async aid => {
   try {
     const { data } = await ApiConfig.post(`/article/like/${aid}`);
     console.log('[SUCCESS] likeArticle', data);
-    return data.data;
+    return data;
   } catch (e) {
     console.log('[FAIL] likeArticle', e);
   }
@@ -68,7 +68,7 @@ const dislikeArticleApi = async aid => {
   try {
     const { data } = await ApiConfig.delete(`/article/like/${aid}`);
     console.log('[SUCCESS] dislikeArticle', data);
-    return data.data;
+    return data;
   } catch (e) {
     console.log('[FAIL] dislikeArticle', e);
   }
