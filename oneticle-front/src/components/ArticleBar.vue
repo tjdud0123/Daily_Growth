@@ -1,7 +1,7 @@
 <template>
   <div
     id="articleBar"
-    class="d-flex justify-content-end p-fixed bottom w-100 pb-4 px-1"
+    class="d-flex justify-content-end p-fixed bottom w-100 pb-3 pt-1 px-1"
   >
     <img :src="noteSrc" alt="icon" id="note-icon" @click="createNote" />
     <img
@@ -34,6 +34,10 @@ export default {
       Type: Object,
       default: () => {},
     },
+    noteCreated: {
+      Type: Boolean,
+      default: false,
+    },
   },
   mounted() {
     console.log(this.article);
@@ -46,7 +50,7 @@ export default {
   },
   methods: {
     createNote() {
-      console.log('createNote');
+      this.$emit('createNote');
     },
     toggleLike() {
       console.log('like');
@@ -78,7 +82,7 @@ export default {
   },
   computed: {
     isNoteCreated() {
-      return this.article?.note_id ? '_active' : '';
+      return this.noteCreated || this.article?.note_id ? '_active' : '';
     },
     isArticleLike() {
       return this.isLike ? '_active' : '';
@@ -95,10 +99,9 @@ export default {
 
 <style lang="scss" scoped>
 #articleBar {
-  max-width: 575px;
+  max-width: 375px;
   height: 83px;
   box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.16);
-  position: relative;
 }
 #note-icon {
   width: 95px;

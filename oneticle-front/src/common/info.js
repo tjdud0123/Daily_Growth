@@ -36,7 +36,7 @@ const levelInfo = {
   },
   getLevelInfo: level => {
     const titleAndPoint =
-      level <= 1500
+      level <= 1350
         ? ['작은 새싹', 300]
         : level <= 4350
         ? ['큰 새싹', 600]
