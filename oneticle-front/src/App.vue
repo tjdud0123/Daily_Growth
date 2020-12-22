@@ -5,7 +5,13 @@
       mode="out-in"
       :duration="{ enter: 400, leave: 600 }"
     >
-      <router-view @reCreate="reCreate" :key="componentKey"></router-view>
+      <router-view
+        @reCreate="reCreate"
+        @emitIndex="setIndex"
+        :key="componentKey"
+        :initialweekIndex="weekIndex"
+        :initialdayIndex="dayIndex"
+      ></router-view>
     </transition>
     <div v-show="showTabBar">
       <tab-bar></tab-bar>
@@ -28,6 +34,8 @@ export default {
       showTabBar: false,
       currentRoute: this.$route.name,
       componentKey: true,
+      weekIndex: -1,
+      dayIndex: 0,
     };
   },
   methods: {
@@ -37,8 +45,11 @@ export default {
         : false;
     },
     reCreate() {
-      console.log('hi');
       this.componentKey = !this.componentKey;
+    },
+    setIndex(weekIndex, dayIndex) {
+      this.weekIndex = weekIndex;
+      this.dayIndex = dayIndex;
     },
   },
   watch: {

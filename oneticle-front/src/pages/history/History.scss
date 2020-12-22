@@ -28,14 +28,14 @@ i {
 }
 
 #noTodayArticle {
-  margin-top: 6rem;
+  margin-top: 5rem;
 }
 
 #thumbNail {
   width: 80px;
   height: 80px;
   background-repeat: no-repeat;
-  background-position: right center;
+  background-position: center center;
   background-size: cover;
   border-radius: 10px;
 }
@@ -45,7 +45,7 @@ h1 {
   margin-left: 30px;
 }
 
-::v-deep .balloon {
+::v-deep #gray-balloon.balloon {
   background: #f4f4f4 !important;
   color: black !important;
   text-align: left !important;
@@ -54,15 +54,18 @@ h1 {
   width: 100%;
   margin-bottom: 0.5rem !important;
   white-space: normal !important;
+  transition: 0s;
 }
 
-::v-deep .triangle {
+::v-deep #gray-balloon .triangle {
   background: #f4f4f4 !important;
   top: 0px;
   left: 10%;
   transform: rotate(180deg) skewX(-30deg) scale(1, 0.866);
+  transition: 0s;
 }
 
 .gray-border {
   border: 1px solid #e6e6e6;
+  background-position: right center !important;
 }
