@@ -79,7 +79,7 @@ export default {
 #topBar {
   max-width: 375px;
   height: 50px;
-  width: 100vw;
+  width: 100%;
 }
 h4 {
   color: #b5b5b5;

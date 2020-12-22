@@ -1,20 +1,32 @@
 #signUp-progress {
+  max-width: 375px;
   border-radius: 0;
   height: 2px;
   top: 0;
-  width: 100vw;
+  width: 100%;
 }
 ::v-deep .progress,
 .progress-wrapper.is-not-native {
   border-radius: 0 !important;
-  width: 99vw;
+  width: 99%;
 }
-
+.container {
+  height: calc(100vh - 50px);
+  background-repeat: no-repeat;
+  background-size: 309px 407px;
+  background-position: 180% bottom;
+}
 #job-img {
-  width: 70vw;
-  position: fixed;
-  bottom: -20px;
-  right: -40px;
+  // overflow: hidden;
+  // width: 309px;
+  // height: 407px;
+  // position: fixed;
+  // bottom: 0;
+  // left: 50%;
+  // transform: translateX(-20%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 70% bottom;
 }
 
 li {

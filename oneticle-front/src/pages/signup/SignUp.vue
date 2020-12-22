@@ -17,7 +17,13 @@
       ></b-progress>
     </div>
     <!-- 가입절차 -->
-    <div class="container pt-5 has-top" v-if="!allCompleted">
+    <div
+      class="container pt-5 has-top"
+      v-if="!allCompleted"
+      :style="{
+        backgroundImage: `url(${jobImg})`,
+      }"
+    >
       <div id="step-1" v-show="step === 1">
         <h2 class="font-weight-bold text-left mb-5">회원가입</h2>
         <line-input
@@ -60,7 +66,6 @@
             {{ value }}
           </li>
         </ul>
-        <img :src="jobImg" alt="character" id="job-img" />
       </div>
       <div id="step-4" v-show="step === 4">
         <h2 class="text-left mb-5"><b>세부 직군</b>을 선택해주세요</h2>
@@ -235,9 +240,11 @@ export default {
       );
     },
     jobImg() {
-      return require(`../../assets/signUp/char${this.jobList.indexOf(
-        this.signUpFormData.job,
-      )}.png`);
+      return this.step !== 3
+        ? ''
+        : require(`../../assets/signUp/char${this.jobList.indexOf(
+            this.signUpFormData.job,
+          )}.png`);
     },
   },
 };

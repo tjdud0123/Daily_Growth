@@ -8,7 +8,7 @@
   /* customizing 부분 */
   --white: #ffffff;
   --dark: #000000;
-  --primary: #49f749;
+  --primary: #28f92d;
   --gray-light: #f4f4f4;
   --gray-white: #efefef;
   --gray: #dbdbdb;
@@ -17,7 +17,7 @@
 
   /* 원래 설정된 부분 */
   --secondary: #6c757d;
-  --success: #28a745;
+  --success: #08d50d;
   --info: #17a2b8;
   --warning: #ffc107;
   --light: #f8f9fa;
@@ -390,8 +390,8 @@ pre code {
 }
 .container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  padding-right: 16px;
+  padding-left: 16px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -632,6 +632,9 @@ button.bg-primary:focus,
 button.bg-primary:hover {
   background-color: var(--primary) !important;
 }
+.bg-success {
+  background-color: var(--success) !important;
+}
 /* .bg-secondary {
   background-color: #6c757d !important;
 }
@@ -640,9 +643,6 @@ a.bg-secondary:hover,
 button.bg-secondary:focus,
 button.bg-secondary:hover {
   background-color: #545b62 !important;
-}
-.bg-success {
-  background-color: #28a745 !important;
 }
 a.bg-success:focus,
 a.bg-success:hover,
@@ -740,8 +740,7 @@ button.bg-gray:hover {
 }
 a.bg-gray-dark:focus,
 a.bg-gray-dark:hover,
-button.bg-gray-dark:focus,
-button.bg-gray-dark:hover {
+button.bg-gray-dark {
   background-color: var(--gray-dark) !important;
 }
 
@@ -1544,7 +1543,7 @@ button.bg-gray-dark:hover {
   color: var(--white) !important;
 }
 .text-dark {
-  color: var(--black) !important;
+  color: var(--dark) !important;
 }
 .text-primary {
   color: var(--primary) !important;
@@ -1653,4 +1652,26 @@ a.text-dark:hover {
 }
 .c-pointer {
   cursor: pointer;
+}
+
+.p-absolute {
+  position: absolute;
+}
+.p-relative {
+  position: relative;
+}
+.p-fixed {
+  position: fixed;
+}
+.top {
+  top: 0;
+}
+.bottom {
+  bottom: 0;
+}
+.has-top {
+  margin-top: 50px;
+}
+.has-bottom {
+  margin-bottom: 83px;
 }
