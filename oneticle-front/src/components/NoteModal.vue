@@ -58,8 +58,8 @@ export default {
     noteComplete() {
       this.isNoteCreated ? this.updateNote() : this.createNote();
     },
-    closeNote() {
-      this.$emit('closeNote');
+    closeNote(isChanged = false) {
+      this.$emit('closeNote', isChanged);
     },
     async createNote() {
       this.isLoading = true;
@@ -75,7 +75,7 @@ export default {
       this.isNoteCreated = true;
       this.$emit('setNoteCreated');
       this.isLoading = false;
-      this.closeNote();
+      this.closeNote(true);
     },
     async updateNote() {
       this.isLoading = true;
@@ -89,7 +89,7 @@ export default {
         return;
       }
       this.isLoading = false;
-      this.closeNote();
+      this.closeNote(true);
     },
     focusTextArea() {
       this.$refs.textArea.focus();

@@ -117,7 +117,7 @@ export default {
       );
     },
     charSrc() {
-      return levelInfo.getCharSrc(this.myProfile.job, this.levelTitle);
+      return levelInfo.getCharSrc(this.myProfile.job, this.levelTitle)[0];
     },
     levelLimited() {
       return Math.min(this.myProfile.level, 20850);

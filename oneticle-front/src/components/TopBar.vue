@@ -11,7 +11,7 @@
       {{ title }}
     </h3>
     <h4
-      class="m-0 p-3 font-weight-bold"
+      class="m-0 p-3 font-weight-bold c-pointer"
       :class="{ 'text-dark': canNext }"
       style="width:66px"
       @click="goNext"
@@ -74,8 +74,10 @@ export default {
 <style lang="scss" scoped>
 #back_arrow {
   height: 100%;
+  cursor: pointer;
 }
 #topBar {
+  max-width: 375px;
   height: 50px;
   width: 100vw;
 }

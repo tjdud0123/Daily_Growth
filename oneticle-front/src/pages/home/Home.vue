@@ -165,7 +165,6 @@ export default {
       this.goArticleView(article, true);
     },
     goArticleView(article, isToast) {
-      console.log(article, isToast);
       this.$router.push({ path: '/articleView', query: { article, isToast } });
     },
     setRest() {

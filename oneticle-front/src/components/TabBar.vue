@@ -1,7 +1,7 @@
 <template>
   <div
     id="tabBar"
-    class="d-flex justify-content-between p-fixed bottom w-100 pt-1 pb-4 px-1"
+    class="c-pointer d-flex justify-content-between p-fixed bottom w-100 pt-1 pb-4 px-1"
   >
     <img
       :src="homeSrc"
@@ -60,7 +60,7 @@ export default {
 
 <style lang="scss" scoped>
 #tabBar {
-  max-width: 575px;
+  max-width: 375px;
   box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.16);
 }
 .tab-bar-icon {
