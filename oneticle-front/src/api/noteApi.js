@@ -11,9 +11,9 @@ const createNoteApi = async (aid, noteContent) => {
   }
 };
 
-const updateNoteApi = async (nid, noteContent) => {
+const updateNoteApi = async (aid, noteContent) => {
   try {
-    const { data } = await ApiConfig.put(`/note/${nid}`, noteContent);
+    const { data } = await ApiConfig.put(`/note/${aid}`, noteContent);
     console.log('[SUCCESS] updateNote', data);
     return data;
   } catch (e) {

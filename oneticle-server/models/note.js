@@ -21,8 +21,8 @@ const note = {
     }
   },
 
-  updateMyNote: async (content, noteIdx) => {
-    const query = `UPDATE ${NOTE_TABLE} SET content = "${content}" WHERE note_id ="${noteIdx}"`;
+  updateMyNote: async (content, userIdx, articleIdx) => {
+    const query = `UPDATE ${NOTE_TABLE} SET content = "${content}" WHERE User_user_id ="${userIdx}" and  Article_article_id="${articleIdx}"`;
     try {
       const result = await pool.queryParam(query);
       const isUpdated = result.insertId;

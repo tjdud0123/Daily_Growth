@@ -40,9 +40,11 @@ module.exports = {
   // 노트 내용 수정
   updateNote: async (req, res) => {
     const { content } = req.body;
-    const noteIdx = req.params.nid;
+    const userIdx = req.decoded.userId;
+    const articleIdx = req.params.aid;
+    //const noteIdx = req.params.nid;
 
-    const updateId = await NoteModel.updateMyNote(content, noteIdx);
+    const updateId = await NoteModel.updateMyNote(content, userIdx, articleIdx);
     if (updateId === -1) {
       return res
         .status(CODE.DB_ERROR)
