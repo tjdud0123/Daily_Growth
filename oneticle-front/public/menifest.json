@@ -1,0 +1,22 @@
+{
+  "background_color": "#28f92d",
+  "description": "취준생을 위한 1일 1정기구독 서비스",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "https://media.vlpt.us/images/moseok/post/8dd7bbde-137c-4126-ae72-88965ab839ed/%EC%9E%90%EC%82%B0%2053.png",
+      "sizes": "193x193",
+      "type": "image/png"
+    },
+    {
+      "src": "https://media.vlpt.us/images/moseok/post/3129cb78-c084-4fc8-b1cb-f50421c05929/%EC%9E%90%EC%82%B0%2051.png",
+      "sizes": "385x385",
+      "type": "image/png"
+    }
+  ],
+  "name": "취준생을 위한 1일 1정기구독 서비스",
+  "short_name": "oneTicle",
+  "start_url": "./public/index.html",
+  "theme_color": "#ffffff",
+  "orientation": "portrait"
+}
