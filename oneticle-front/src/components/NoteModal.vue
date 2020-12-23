@@ -105,7 +105,7 @@ export default {
 
 <style lang="scss" scoped>
 .modal-bg {
-  max-width: 375px;
+  max-width: 400px;
   position: absolute;
   width: 100vw;
   height: 100vh;

@@ -69,7 +69,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
   /* border: 1px solid black; */
-  max-width: 375px;
+  max-width: 400px;
   width: 100vw;
   height: 100vh;
 }

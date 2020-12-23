@@ -99,7 +99,7 @@ export default {
 
 <style lang="scss" scoped>
 #articleBar {
-  max-width: 375px;
+  max-width: 400px;
   height: 83px;
   box-shadow: 0px -1px 10px rgba(0, 0, 0, 0.16);
 }

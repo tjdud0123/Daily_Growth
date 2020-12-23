@@ -77,7 +77,7 @@ export default {
   cursor: pointer;
 }
 #topBar {
-  max-width: 375px;
+  max-width: 400px;
   height: 50px;
   width: 100%;
 }
