@@ -1,22 +1,7 @@
 # 🦉 oneTicle 서버 폴더 🦉
 
-### 사용 패키지
-
-```
-$ yarn add promise-mysql
-```
-
-```
-$ yarn add rand-token
-```
-
-```
-$ yarn add jsonwebtoken
-```
-
-```
-$ yarn add pbkdf2
-```
+### ERD
+![image](https://user-images.githubusercontent.com/22907830/101021847-cbd3b700-35b3-11eb-9e41-8a96f6809ccc.png)
 
 ### 폴더구조
 
@@ -57,11 +42,32 @@ $ yarn add pbkdf2
 
 #### ✔️ BaseURL = "3.22.173.242:3000"
 
-** uid : userId<br>
 ** aid : articleId<br>
-** nid : noteId<br>
-** hid : historyId<br>
 
+
+### 계정관련 (User)
+
+* [POST] `/user/signup` - 회원가입
+* [POST] `/user/signin` - 로그인
+* [GET] `/user/profile` - 마이 페이지 정보 조회
+
+### 아티클 (Article)
+
+* [GET] `/article/today` - 오늘의 아티클 받아보기
+* [POST] `/article/save/:aid` - 아티클 저장
+* [POST] `/article/like/:aid` - 아티클 좋아요
+* [DELETE] `/article/like/:aid` - 아티클 좋아요 취소
+
+
+### 노트 (Note)
+
+* [POST] `/note/:aid` - 노트 추가
+* [PUT] `/note/:aid` - 노트 내용 수정
+
+
+### 내 기록 (History)
+
+* [GET] `/history` - 전체 기록 조회
 
 #### 계정관련 (User)
 
@@ -275,4 +281,22 @@ $ yarn add pbkdf2
         ...
     ]
 }
+```
+
+### 사용 패키지
+
+```
+$ yarn add promise-mysql
+```
+
+```
+$ yarn add rand-token
+```
+
+```
+$ yarn add jsonwebtoken
+```
+
+```
+$ yarn add pbkdf2
 ```
