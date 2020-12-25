@@ -1,38 +1,14 @@
 # 🌱 oneTicle
 성장을 위한 1일 1아티클 서비스 with PWA
-![image](https://user-images.githubusercontent.com/22907830/101022669-09850f80-35b5-11eb-8876-9274a419101a.png)
 
-### ERD
-![image](https://user-images.githubusercontent.com/22907830/101021847-cbd3b700-35b3-11eb-9e41-8a96f6809ccc.png)
-
-### API
-#### ✔️ BaseURL = "http://3.22.173.242"
+<img src="https://user-images.githubusercontent.com/22907830/103140063-95f2a000-4725-11eb-9097-f2ad625b138f.gif" alt="drawing" height="600"/><img src="https://user-images.githubusercontent.com/22907830/103140084-c0445d80-4725-11eb-92c8-39024ef16daa.gif" alt="drawing" height="600"/><img src="https://user-images.githubusercontent.com/22907830/103140092-d520f100-4725-11eb-8b50-7965eb8345b8.gif" alt="drawing" height="600"/><img src="https://user-images.githubusercontent.com/22907830/103140087-cdf9e300-4725-11eb-8026-0f525f495209.gif" alt="drawing" height="600"/><img src="https://user-images.githubusercontent.com/22907830/103140133-452f7700-4726-11eb-81e8-d8b4411e8554.gif" alt="drawing" height="600"/>
 
 
-** aid : articleId<br>
-** nid : noteId<br>
 
-
-### 계정관련 (User)
-
-* [POST] `/user/signup` - 회원가입
-* [POST] `/user/signin` - 로그인
-* [GET] `/user/profile` - 마이 페이지 정보 조회
-
-### 아티클 (Article)
-
-* [GET] `/article/today` - 오늘의 아티클 받아보기
-* [POST] `/article/save/:aid` - 아티클 저장
-* [POST] `/article/like/:aid` - 아티클 좋아요
-* [DELETE] `/article/like/:aid` - 아티클 좋아요 취소
-
-
-### 노트 (Note)
-
-* [POST] `/note/:aid` - 노트 추가
-* [PUT] `/note/:nid` - 노트 내용 수정
-
-
-### 내 기록 (History)
-
-* [GET] `/history` - 전체 기록 조회
+![image](https://media.vlpt.us/images/moseok/post/33282b11-69ee-4c98-b961-c00831378c74/%EC%9B%B9%201920%20%E2%80%93%201@2x.png)
+![image](https://media.vlpt.us/images/moseok/post/13634179-4089-4f79-87d6-d08020e80e52/%EC%9B%B9%201920%20%E2%80%93%204@2x.png)
+![image](https://media.vlpt.us/images/moseok/post/6f4df4f9-34dd-4d89-b361-4a2f8bf7fe38/%EC%9B%B9%201920%20%E2%80%93%205@2x.png)
+![image](https://media.vlpt.us/images/moseok/post/efcc7a30-6125-4f70-9aeb-a2c733cd557d/%EC%9B%B9%201920%20%E2%80%93%206@2x.png)
+![image](https://media.vlpt.us/images/moseok/post/12843465-5405-43c0-a85f-093a38ec08c2/%EC%9B%B9%201920%20%E2%80%93%207@2x.png)
+![image](https://media.vlpt.us/images/moseok/post/7207ff51-2631-4ab1-9271-1810067b5187/%EC%9B%B9%201920%20%E2%80%93%208@2x.png)
+![image](https://media.vlpt.us/images/moseok/post/20c9d516-d94b-4710-9dec-9dedcb5a3437/%EC%9B%B9%201920%20%E2%80%93%2012@2x.png)
